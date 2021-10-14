@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 //IMPORT COMPONENTS
-// import LoginForm from './components/LoginForm.vue';
+import PeriodicSystem from './components/PeriodicSystem.vue';
 // import Molecules from './components/Molecules.vue';
 // import GameLevel from './components/GameLevel.vue';
 // import Elements from './components/Elements.vue';
@@ -10,12 +10,12 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 export default new Router({
-    // routes: [
-    //     {
-    //         path: '/',
-    //         name: 'Home',
-    //         component: Molecules,
-    //     },
+    routes: [
+        {
+            path: '/',
+            name: 'Home',
+            component: PeriodicSystem,
+        },
     //     {
     //         path: '/login',
     //         name: 'Login',
@@ -31,5 +31,5 @@ export default new Router({
     //         name: 'Elements',
     //         component: Elements,
     //     },
-    // ],
+    ],
 });
