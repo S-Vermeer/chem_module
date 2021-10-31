@@ -19,9 +19,10 @@ export default {
     removeItem: function() {
 
     },
-    mounted() {
-      this.functionality()
-    }
+
+  },
+  click() {
+    this.$emit('clicked')
   }
 
 }

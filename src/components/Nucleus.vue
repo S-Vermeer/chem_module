@@ -1,8 +1,7 @@
 <template>
   <div class="atom-interact">
-    <add-button :kind="nuc" @click="drawCircle(xPos,yPos,radius)"/>
-    <remove-button :kind="nuc" :functionality="drawCircle(xPos,yPos,radius)"/>
-<!--        <remove-button :kind="nuc"/>-->
+    <add-button :kind="nuc"/>
+    <remove-button :kind="nuc" @click.native="drawCircle(xPos, yPos, radius)"/>
 
     <p class="label">Nucleus</p>
   </div>

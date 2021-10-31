@@ -3,29 +3,25 @@
     <div class="atom-display">
       <canvas id="c"></canvas>
     </div>
-<!--    <div>-->
-<!--      <button @click="drawRect">draw</button>-->
-<!--      <button @click="addWidth">+</button>-->
-<!--      <button @click="subWidth">-</button>-->
-<!--    </div>-->
+
     <div class="atom-builder-buttons">
-      <Nucleus xPos=50 yPos=50 radius=10 />
+<!--      <Nucleus xPos=50 yPos=50 radius=10 />-->
 
       <div class="atom-interact">
-        <add-button :kind="e"/>
-        <remove-button :kind="e"/>
+        <add-button :kind="e" @click.native="addWidth"/>
+        <remove-button :kind="e" @click.native="subWidth"/>
         <p class="label">Elektronen</p>
 
       </div>
       <div class="atom-interact">
-        <add-button :kind="n"/>
-        <remove-button :kind="n"/>
+        <add-button :kind="n" @click.native="addWidthColored('blue')"/>
+        <remove-button :kind="n" @click.native="subWidthColored('blue')"/>
         <p class="label">Neutronen</p>
 
       </div>
       <div class="atom-interact">
-        <add-button :kind="p"/>
-        <remove-button :kind="p"/>
+        <add-button :kind="p" @click.native="addWidthColored('red')"/>
+        <remove-button :kind="p" @click.native="subWidthColored('red')"/>
         <p class="label">Protonen</p>
 
       </div>
@@ -36,12 +32,12 @@
 <script>
 import RemoveButton from "./RemoveButton";
 import AddButton from "./AddButton";
-import Nucleus from "./Nucleus";
+// import Nucleus from "./Nucleus";
 
 export default {
   name: "AtomBuilder",
   components: {
-    Nucleus,
+    // Nucleus,
     RemoveButton,
     AddButton,
   },
@@ -74,7 +70,43 @@ export default {
     subWidth() {
       this.rectWidth -= 10
       this.drawRect()
-    }
+    },
+
+    drawCircle(x,y,r) {
+      // clear canvas
+      this.vueCanvas.clearCircle(x,y,r)
+      // draw rect
+      this.vueCanvas.beginPath();
+      this.vueCanvas.arc(x, y, r, 0, 2 * Math.PI);
+      this.vueCanvas.stroke();
+    },
+
+    addWidthColored(color) {
+      this.rectWidth += 10
+      this.vueCanvas.clearRect(0, 0, 400, 200);
+      this.vueCanvas.fillStyle = color;
+      // draw rect
+      this.vueCanvas.beginPath();
+      this.vueCanvas.fillRect(20, 20, this.rectWidth, 100);
+      this.vueCanvas.stroke();
+    },
+
+    subWidthColored(color) {
+      this.rectWidth -= 10
+      this.vueCanvas.clearRect(0, 0, 400, 200);
+      this.vueCanvas.fillStyle = color;
+      // draw rect
+      this.vueCanvas.beginPath();
+      this.vueCanvas.fillRect(20, 20, this.rectWidth, 100);
+      this.vueCanvas.stroke();
+    },
+
+    clearCircle(x,y,r) {
+      for (var i = 0; i < Math.round(Math.PI * r); i++) {
+        var angle = (i / Math.round(Math.PI * r)) * 360;
+        this.vueCanvas.clearRect(x, y, Math.sin(angle * (Math.PI / 180)) * r, Math.cos(angle * (Math.PI / 180)) * r);
+      }
+    },
   }
 }
 
