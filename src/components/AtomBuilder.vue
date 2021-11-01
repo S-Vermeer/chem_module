@@ -143,7 +143,7 @@ export default {
 }
 
 #c {
-  height: 100px;
+  height: 75px;
   width: 150px;
   border: 1px solid gray;
 }
